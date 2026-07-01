@@ -1,0 +1,34 @@
+#! /usr/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x58783e7a3510 .scope module, "and_gate" "and_gate" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "y";
+o0x70e0a44b7018 .functor BUFZ 1, C4<z>; HiZ drive
+v0x58783e7a5400_0 .net "a", 0 0, o0x70e0a44b7018;  0 drivers
+o0x70e0a44b7048 .functor BUFZ 1, C4<z>; HiZ drive
+v0x58783e7e9a50_0 .net "b", 0 0, o0x70e0a44b7048;  0 drivers
+v0x58783e7e9b10_0 .var "y", 0 0;
+E_0x58783e7a3dc0 .event anyedge, v0x58783e7a5400_0, v0x58783e7e9a50_0;
+    .scope S_0x58783e7a3510;
+T_0 ;
+    %wait E_0x58783e7a3dc0;
+    %load/vec4 v0x58783e7a5400_0;
+    %load/vec4 v0x58783e7e9a50_0;
+    %and;
+    %store/vec4 v0x58783e7e9b10_0, 0, 1;
+    %jmp T_0;
+    .thread T_0, $push;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "and_gate.v";
